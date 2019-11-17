@@ -1,0 +1,23 @@
+{
+  "name": "d4160.constants-and-enums-generator-kit",
+  "displayName": "Unity Constants and Enums Generator Kit",
+  "version": "0.1.0",
+  "unity": "2017.1",
+  "description": "Generate common Unity constants and Enums (based on UtilityKit from GitHub).",
+  "keywords": [
+    "unity",
+    "constants",
+    "enums",
+    "generator"
+  ],
+  "dependencies": {
+    "sir-hall.excessives": "1.0.0"
+  },
+  "author": {
+    "name": "d4160(Maranatha2031)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/d4160/Unity-ConstantsAndEnumsGenerator.git"
+  }
+}

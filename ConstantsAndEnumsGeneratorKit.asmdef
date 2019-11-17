@@ -1,0 +1,17 @@
+{
+    "name": "ConstantsAndEnumsGeneratorKit",
+    "references": [
+        "GUID:261027db1ee74c64584b2ab6612a3ee8"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
