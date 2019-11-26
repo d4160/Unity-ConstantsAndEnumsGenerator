@@ -3,13 +3,11 @@
 using UnityEngine;
 using UnityEditor;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Excessives.LinqE;
 
 
 namespace Prime31Editor
@@ -148,9 +146,10 @@ namespace Prime31Editor
             output += $"\tpublic enum {enumName}\n";
             output += "\t{\n";
 
-            labelsArray.For((s, i) => {
-                output += "\t\t" + buildEnumEntry(s, i) + "\n";
-            });
+			for (int i = 0; i < labelsArray.Length; i++)
+			{
+				output += "\t\t" + buildEnumEntry(labelsArray[i], i) + "\n";
+			}
 
             output += "\t}\n";
             output += "}";
@@ -167,9 +166,10 @@ namespace Prime31Editor
             output += "\tpublic static class " + className + "\n";
             output += "\t{\n";
 
-            labelsArray.For((s, i) => {
-                output += "\t\t" + buildConstIntVariable(s, i) + "\n";
-            });
+			for (int i = 0; i < labelsArray.Length; i++)
+			{
+				output += "\t\t" + buildConstIntVariable(labelsArray[i], i) + "\n";
+			}
 
             output += "\n\t\tpublic const int " + totalConstantName + " = " + labelsArray.Length + ";\n\n\n";
 

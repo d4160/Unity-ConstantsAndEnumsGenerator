@@ -1,8 +1,6 @@
 {
     "name": "ConstantsAndEnumsGeneratorKit",
-    "references": [
-        "GUID:c1899d3d142fb0649ba302da9724e6e4"
-    ],
+    "references": [],
     "includePlatforms": [
         "Editor"
     ],
