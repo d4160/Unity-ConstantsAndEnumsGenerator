@@ -15,8 +15,8 @@ namespace Prime31Editor
 	// Note: This class uses UnityEditorInternal which is an undocumented internal feature
 	public class ConstantsGeneratorKit : MonoBehaviour
 	{
-		private const string FOLDER_LOCATION = "__Project Assets/_GameFramework/Scripts/Constants/";
-		private const string FOLDER_LOCATION_ENUMS = "__Project Assets/_GameFramework/Scripts/Enums/";
+		private const string FOLDER_LOCATION = "__Project Assets/_GameFramework/Scripts/_Constants/";
+		private const string FOLDER_LOCATION_ENUMS = "__Project Assets/_GameFramework/Scripts/_Enums/";
 		private const string NAMESPACE = "GameFramework";
 		private static ConstantNamingStyle CONSTANT_NAMING_STYLE = ConstantNamingStyle.CamelCase;
 		private const string DIGIT_PREFIX = "k";
