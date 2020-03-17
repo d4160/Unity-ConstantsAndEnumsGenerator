@@ -15,8 +15,8 @@ namespace Prime31Editor
 	// Note: This class uses UnityEditorInternal which is an undocumented internal feature
 	public class ConstantsGeneratorKit : MonoBehaviour
 	{
-		private const string FOLDER_LOCATION = "__Project Assets/_GameFramework/Scripts/Runtime/_Constants/";
-		private const string FOLDER_LOCATION_ENUMS = "__Project Assets/_GameFramework/Scripts/Runtime/_Enums/";
+		private const string FOLDER_LOCATION = "__Project Assets/Scripts/GameFramework/Runtime/_Constants/";
+		private const string FOLDER_LOCATION_ENUMS = "__Project Assets/Scripts/GameFramework/Runtime/_Enums/";
 		private const string NAMESPACE = "GameFramework";
 		private static ConstantNamingStyle CONSTANT_NAMING_STYLE = ConstantNamingStyle.CamelCase;
 		private const string DIGIT_PREFIX = "k";
@@ -117,13 +117,15 @@ namespace Prime31Editor
 			return layerIds;
 		}
 
-        public static void RebuildConstantsClass(string fileName, string[] constantsNamesArray, string totalConstantName)
+        public static void RebuildConstantsClass(string fileName, string[] constantsNamesArray, string totalConstantName, string additional = null)
         {
             var folderPath = Application.dataPath + "/" + FOLDER_LOCATION;
             if (!Directory.Exists(folderPath))
                 Directory.CreateDirectory(folderPath);
 
-            File.WriteAllText(folderPath + fileName, GetClassContent(fileName.Replace(".cs", string.Empty), constantsNamesArray, totalConstantName));
+			var content = GetClassContent(fileName.Replace(".cs", string.Empty), constantsNamesArray, totalConstantName, additional);
+
+            File.WriteAllText(folderPath + fileName, content);
             AssetDatabase.ImportAsset("Assets/" + FOLDER_LOCATION + fileName, ImportAssetOptions.ForceUpdate);
         }
 
@@ -157,7 +159,7 @@ namespace Prime31Editor
             return output;
         }
 
-        private static string GetClassContent(string className, string[] labelsArray, string totalConstantName)
+        private static string GetClassContent(string className, string[] labelsArray, string totalConstantName, string additional = null)
         {
             var output = "";
             output += "//This class is auto-generated do not modify\n";
@@ -171,10 +173,14 @@ namespace Prime31Editor
 				output += "\t\t" + buildConstIntVariable(labelsArray[i], i) + "\n";
 			}
 
-            output += "\n\t\tpublic const int " + totalConstantName + " = " + labelsArray.Length + ";\n\n\n";
+            output += "\n\t\tpublic const int " + totalConstantName + " = " + labelsArray.Length + ";\n";
 
-            output += "\t}\n";
-            output += "}";
+            if (additional != null)
+                output += additional;
+
+			output += "\n\t}\n";
+
+			output += "}";
 
             return output;
         }
@@ -457,7 +463,7 @@ namespace Prime31Editor
 	}
 
 
-	#if !DISABLE_AUTO_GENERATION
+#if !DISABLE_AUTO_GENERATION
 	// this post processor listens for changes to the TagManager and automatically rebuilds all classes if it sees a change
 	public class ConstandsGeneratorPostProcessor : AssetPostprocessor
 	{
@@ -503,6 +509,6 @@ namespace Prime31Editor
 			}
 		}
 	}
-	#endif
+#endif
 }
 #endif
